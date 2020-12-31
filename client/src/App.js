@@ -6,36 +6,20 @@ function App() {
 
   useEffect(() => {
 
-    getGameSettings()
-      .then(res => console.log( res.express))
-      .catch(err => console.log(err));
+    //getGameSettings()
+      //.then(res => console.log( res.express))
+      //.catch(err => console.log(err));
 
-    getGameStats()
-      .then(res => console.log( res.express))
-      .catch(err => console.log(err));
-
-    getGameMetadata()
-      .then(res => console.log( res.express))
-      .catch(err => console.log(err));
+    //getGameStats()
+      //.then(res => console.log( res.express))
+      //.catch(err => console.log(err));
 
     getPlayers()
-
 
   });
 
   const getGameSettings = async () => {
     const response = await fetch('/settings');
-    const body = await response.json();
-
-    if (response.status !== 200) {
-      throw Error(body.message) 
-    }
-
-    return body;
-  };
-
-  const getGameMetadata = async () => {
-    const response = await fetch('/game');
     const body = await response.json();
 
     if (response.status !== 200) {
@@ -57,8 +41,16 @@ function App() {
   };
 
   const getPlayers = async() => {
+
     let gameData = await getGameData();
     let players = gameData.express.metadata.players;
+
+    for (let playerIndex in players) { 
+      let name = players[playerIndex].names.netplay;
+      players[name] = players[playerIndex];
+      console.log(players[name]);
+    }
+
   }
 
 

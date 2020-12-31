@@ -25,10 +25,6 @@ app.get('/game', (req, res) => {
   res.send({ express: game });
 });
 
-app.get('/metadata', (req, res) => {
-  res.send({ express: metadata });
-});
-
 app.get('/stats', (req, res) => {
   res.send({ express: stats });
 });
